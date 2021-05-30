@@ -1,0 +1,23 @@
+h1{
+    font-size: large;
+    text-align: center;
+}
+pre{
+    font-size: large;
+    text-align: center;
+}
+.viz-container{
+    margin: 5rem;
+}
+svg{
+    display: block;
+    margin: auto;
+}
+.marks .provinces{
+    fill:#8a8bf9;
+}
+.marks .interiors{
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 0.1em;
+}

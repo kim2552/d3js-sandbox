@@ -1,15 +1,11 @@
-import {useState, useEffect} from 'react'
-import * as d3 from 'd3'
 
-const csvUrl = 'https://gist.githubusercontent.com/kim2552/b92cb98de8ad456cc4fcbd644af568ce/raw/cssNamedColors'
+import {useData}  from './useData'
+import {Marks} from './Marks'
+
+const topoJsonUrl = 'https://gist.githubusercontent.com/Brideau/2391df60938462571ca9/raw/f5a1f3b47ff671eaf2fb7e7b798bacfc6962606a/canadaprovtopo.json'
 
 function App() {
-
-  const [data,setData] = useState(null)
-
-  useEffect(() => {
-    d3.csv(csvUrl).then(setData)
-  }, [])
+  const data = useData(topoJsonUrl)
 
   if(!data){
 
@@ -18,16 +14,16 @@ function App() {
     )
 
   }else{
-    console.log(data[0])
-    
+
     return(
-      data.map(d =>
-        <div style={{
-          backgroundColor: d['RGB hex value'],
-          width: "100%",
-          height: "0.5rem"
-        }}></div>
-        )
+      <div>
+        <div className="viz-container">
+          <Marks
+          data={data}
+          ></Marks>
+        </div>
+        <h1>Hello World</h1>
+      </div>
     )
 
   }
