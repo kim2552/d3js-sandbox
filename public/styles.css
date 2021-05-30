@@ -24,12 +24,17 @@ pre{
     stroke: #ffffff;
     stroke-width: 0.1em;
 }
+.hide{
+    display:none;
+}
 .timeline-container{
     margin-left: 7rem;
     margin-right: 7rem;
 }
 .swiper-wrapper{
-    font-size: 10px;
+    margin-left:1rem;
+    margin-right:1rem;
+    font-size: 1rem;
 }
 .carousel{
     display:flex;
