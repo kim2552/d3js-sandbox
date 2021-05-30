@@ -7,14 +7,16 @@ pre{
     text-align: center;
 }
 .viz-container{
-    margin: 5rem;
-}
-svg{
-    display: block;
-    margin: auto;
+    display: flex;
+    align-items: center;
+    
+    margin: 7rem;
 }
 .marks .provinces{
     fill:#8a8bf9;
+}
+.marks .provinces.interactive{
+    fill: red;
 }
 .marks .interiors{
     fill: none;
