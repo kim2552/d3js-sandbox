@@ -11,6 +11,7 @@ pre{
     align-items: center;
     
     margin: 7rem;
+    margin-bottom: 0;
 }
 .marks .provinces{
     fill:#8a8bf9;
@@ -22,4 +23,17 @@ pre{
     fill: none;
     stroke: #ffffff;
     stroke-width: 0.1em;
+}
+.timeline-container{
+    margin-left: 7rem;
+    margin-right: 7rem;
+}
+.swiper-wrapper{
+    font-size: 10px;
+}
+.carousel{
+    display:flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: space-between;
 }
