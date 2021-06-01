@@ -17,7 +17,7 @@ export class TimeLine extends Component {
             time_periods.push(
                 <div className="swiper-wrapper" key={index}>
                     <div className="point-wrapper">
-                        <svg height="30" width="30" onMouseOver={(e)=>{this.props.handleSelectHover(e)}}>
+                        <svg height="60" width="30" onMouseOver={(e)=>{this.props.handleSelectHover(e)}}>
                             <circle className="point" id={index} cx="15" cy="15" r="5" stroke="black" strokeWidth="1" fill="#8a8bf9"/>
                         </svg>
                     </div>

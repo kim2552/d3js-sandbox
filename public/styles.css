@@ -10,14 +10,15 @@ pre{
     display: flex;
     align-items: center;
     
-    margin: 7rem;
+    margin: 5rem;
     margin-bottom: 0;
 }
-.marks .provinces{
+/* .marks .provinces{
     fill:#8a8bf9;
-}
+} */
 .marks .provinces.interactive{
     fill: red;
+    opacity: 1;
 }
 .marks .interiors{
     fill: none;
@@ -28,8 +29,8 @@ pre{
     display:none;
 }
 .timeline-container{
-    margin-left: 7rem;
-    margin-right: 7rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
 }
 .swiper-wrapper{
     margin-left:1rem;

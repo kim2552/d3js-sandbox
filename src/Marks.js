@@ -22,6 +22,28 @@ export const Marks = ({ data:{provinces, interiors }}) => {
         "CA-NL": {x: 577.4923, y: 373.5523, text: "NL"},
         "CA-PE": {x: 611.2455, y: 454.2324, text: "PE"}
     }
+
+    const provinceCases={
+        "CA-MB": {number: 462, text: "MB"},
+        "CA-SK": {number: 644, text: "SK"},
+        "CA-AB": {number: 2664, text: "AB"},
+        "CA-BC": {number: 4646, text: "BC"},
+        "CA-NU": {number: 5, text: "NU"},
+        "CA-NT": {number: 5, text: "NT"},
+        "CA-YT": {number: 5, text: "YT"},
+        "CA-ON": {number: 3634, text: "ON"},
+        "CA-QC": {number: 346, text: "QC"},
+        "CA-NB": {number: 467, text: "NB"},
+        "CA-NS": {number: 44, text: "NS"},
+        "CA-NL": {number: 467, text: "NL"},
+        "CA-PE": {number: 10, text: "PE"}
+    }
+
+    const maxValue = 5000
+    const minValue = 1
+    const scale = (num, in_min, in_max, out_min, out_max) => {
+        return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+      }
     
     const projection = geoTransverseMercator()
     .scale(800)
@@ -30,12 +52,20 @@ export const Marks = ({ data:{provinces, interiors }}) => {
     .center([-0.6, 38.7])
   
     const path = geoPath(projection)
-    const mouseHover = (event,feature) => {
-        const provinces = document.getElementsByClassName('provinces')
-        for(let p of provinces){
-            p.classList.remove("interactive")
-        }
-        event.target.classList.add("interactive")
+    const mouseHover = (event,key) => {
+        const regionPathElement = document.getElementById('region_path_'+key)
+        const regionElement = document.getElementById('region_'+key)
+        regionPathElement.classList.add('interactive')
+        regionElement.classList.remove('hide')
+        console.log(event.target)
+        console.log(event.target.parentElement.parentElement)
+        // event.target.parentElement.parentElement.appendChild(event.target);
+    }
+    const mouseOut = (event,key) => {
+        const regionPathElement = document.getElementById('region_path_'+key)
+        const regionElement = document.getElementById('region_'+key)
+        regionPathElement.classList.remove('interactive')
+        regionElement.classList.add('hide')
     }
 
     return (
@@ -50,14 +80,30 @@ export const Marks = ({ data:{provinces, interiors }}) => {
                 {
                     provinces.features.map((feature,i) => {
                         return(
-                        <g key={i}>
+                        <g 
+                        className="province-group"
+                        key={i}
+                        onMouseOver={(event)=>mouseHover(event,i)}
+                        onMouseOut={(event)=>mouseOut(event,i)}
+                        >
                             <path
+                            fill="blue"
+                            opacity={scale(provinceCases[feature.id].number,minValue,maxValue,1,0.1)}
                             className="provinces"
+                            id={"region_path_"+i}
                             d={path(feature)}
-                            onMouseOver={(event)=>mouseHover(event,feature)}
                             ></path>
-                            <g className="regionValues">
+                            <g className="regionValues hide" id={"region_"+i}>
+                                <rect
+                                fill="black"
+                                opacity=".5"
+                                width="50"
+                                height="25"
+                                rx="10" ry="10"
+                                transform={`translate(${provinceTextPosition[feature.id].x-15},${provinceTextPosition[feature.id].y-17})`}/>
                                 <text
+                                fill="white"
+                                opacity="1"
                                 transform={`translate(${provinceTextPosition[feature.id].x},${provinceTextPosition[feature.id].y})`}
                                 >{provinceTextPosition[feature.id].text}</text>
                             </g>
